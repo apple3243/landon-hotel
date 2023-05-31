@@ -1,4 +1,4 @@
-
+import React from 'react';
 import arrivalInfoList from './data/arrival_info_list.json';
 import checkListService from './data/check_list_service.json';
 import checkListAcc from './data/check_list_acc.json';

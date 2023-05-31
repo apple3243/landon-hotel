@@ -1,3 +1,4 @@
+import React from 'react';
 import galleryList from './data/gallery_list.json'
 
 const Welcome = () => {
