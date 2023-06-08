@@ -1,9 +1,40 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import arrivalInfoList from './data/arrival_info_list.json';
-import checkListService from './data/check_list_service.json';
-import checkListAcc from './data/check_list_acc.json';
+// import checkListService from './data/check_list_service.json';
+// import checkListAcc from './data/check_list_acc.json';
 
 const Hotelinfo = () => {
+  const [checkListService, setCheckListService] = useState([]);
+  const [checkListAcc, setCheckListAcc] = useState([]);
+
+  const loadServiceData = async() => {
+      //Query the API Gateway
+      const resp = await fetch("https://ara3sp3nzj.execute-api.ap-northeast-2.amazonaws.com/Production/services");
+      let jsonData = await resp.json();
+
+      //Assign response data to our state variable
+      setCheckListService(jsonData)
+  }
+
+  useEffect(() => {
+      // Load the service data from the API Gateway
+      loadServiceData();
+  },[]);
+
+  const loadAccessabilityData = async() => {
+      //Query the API Gateway
+      const resp = await fetch("https://ara3sp3nzj.execute-api.ap-northeast-2.amazonaws.com/Production/accessability");
+      let jsonData = await resp.json();
+
+      //Assign response data to our state variable
+      setCheckListAcc(jsonData)
+  }
+
+  useEffect(() => {
+      // Load the accessability data from the API Gateway
+      loadAccessabilityData();
+  },[]);
+
     return(
         <div className="scene" id="hotelinfo">
         <article className="heading">
